@@ -17,7 +17,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+     MY_TOKEN: ${{ secrets.GITTOKEN }}
     steps:
     - name: checkout repository
       uses: actions/checkout@v3
