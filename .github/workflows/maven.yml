@@ -19,10 +19,13 @@ on:
     branches: [ develop ]
 
 jobs:
+  
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-
+    env:
+     MY_TOKEN: ${{ secrets.GITTOKEN }}
+    
     strategy:
       fail-fast: false
       matrix:
