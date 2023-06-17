@@ -63,7 +63,7 @@ jobs:
         run: |
           SONAR_RESPONSE=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
                           "https://sonarcloud.io/api/measures/component?component=Shara-org_sample-java-repo&metricKeys=code_smells,vulnerabilities,bugs")
-          #echo "::set-output name=sonar_response::$SONAR_RESPONSE"
+          echo "::set-output name=sonar_response::$SONAR_RESPONSE"
       - name: Check Sonar Report
         run: |
           SONAR_RESPONSE="${{ steps.retrieve_metrics.outputs.sonar_response }}"
