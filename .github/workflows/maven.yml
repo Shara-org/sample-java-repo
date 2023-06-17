@@ -73,7 +73,7 @@ jobs:
           echo "CODE_SMELLS: $CODE_SMELLS"
           echo "VULNERABILITIES: $VULNERABILITIES"
           echo "BUGS: $BUGS"
-          if [[ $CODE_SMELLS -gt $CODE_SMELLS_THRESHOLD || $VULNERABILITIES -gt $VULNERABILITIES_THRESHOLD || $BUGS -gt $BUGS_THRESHOLD ]]; then
+          if : " $CODE_SMELLS -gt $CODE_SMELLS_THRESHOLD || $VULNERABILITIES -gt $VULNERABILITIES_THRESHOLD || $BUGS -gt $BUGS_THRESHOLD "; then
             echo "Sonar report does not meet quality standards. Exiting with an error."
             exit 1
           fi
