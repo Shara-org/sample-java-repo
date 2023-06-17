@@ -1,5 +1,5 @@
 
-name: "CodeQL"
+name: "java_app_pipeline"
 
 on:
   push:
@@ -44,6 +44,32 @@ jobs:
           run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
           env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           
+  check_quality:
+    name: Check Sonar Report Quality
+    runs-on: ubuntu-latest
+    needs: [sonar]
+    steps:
+      - name: Retrieve SonarCloud Metrics
+        run: |
+          SONAR_RESPONSE=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
+                          "https://sonarcloud.io/api/measures/component?component=Shara-org_sample-java-repo&metricKeys=code_smells,vulnerabilities,bugs")
+          CODE_SMELLS=$(echo "$SONAR_RESPONSE" | jq -r '.component.measures[] | select(.metric == "code_smells") | .value')
+          VULNERABILITIES=$(echo "$SONAR_RESPONSE" | jq -r '.component.measures[] | select(.metric == "vulnerabilities") | .value')
+          BUGS=$(echo "$SONAR_RESPONSE" | jq -r '.component.measures[] | select(.metric == "bugs") | .value')
+          echo "CODE_SMELLS: $CODE_SMELLS"
+          echo "VULNERABILITIES: $VULNERABILITIES"
+          echo "BUGS: $BUGS"
+      - name: Check Sonar Report
+        run: |
+          if [[ $CODE_SMELLS -gt $CODE_SMELLS_THRESHOLD || $VULNERABILITIES -gt $VULNERABILITIES_THRESHOLD || $BUGS -gt $BUGS_THRESHOLD ]]; then
+            echo "Sonar report does not meet quality standards. Exiting with an error."
+            exit 1
+          fi
+        env:
+          CODE_SMELLS: 0
+          VULNERABILITIES: 0
+          BUGS: 0
 
 
   docker:
