@@ -66,7 +66,7 @@ jobs:
           echo "::set-output name=sonar_response::$SONAR_RESPONSE"
       - name: Check Sonar Report
         run: |
-          SONAR_RESPONSE="${{ steps.retrieve_metrics.outputs.sonar_response }}"
+          SONAR_RESPONSE='${{ steps.retrieve_metrics.outputs.sonar_response }}'
           CODE_SMELLS=$(echo "$SONAR_RESPONSE" | jq -r '.component.measures[] | select(.metric == "code_smells") | .value')
           VULNERABILITIES=$(echo "$SONAR_RESPONSE" | jq -r '.component.measures[] | select(.metric == "vulnerabilities") | .value')
           BUGS=$(echo "$SONAR_RESPONSE" | jq -r '.component.measures[] | select(.metric == "bugs") | .value')
