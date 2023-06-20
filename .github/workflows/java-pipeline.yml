@@ -31,6 +31,7 @@ jobs:
     uses: "./.github/workflows/Code_Quality_Stage.yml"
     with:
        runnerName: "ubuntu-latest"
+       java-version : "11.0.4"
           
   buildImageandDeploy:
       name: building docker image
