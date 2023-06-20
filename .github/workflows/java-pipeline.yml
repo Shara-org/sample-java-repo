@@ -105,10 +105,10 @@ jobs:
       name: building docker image
       
       needs: [ Codebuild , sonar , check_quality]
-      uses: ".github/workflows/deploystage.yml@feature"
+      uses: "./.github/workflows/deploystage.yml"
       with:
         runnerName: "ubuntu-latest"
-        branchName: "feature"
+        #branchName: "feature"
       
       
       
