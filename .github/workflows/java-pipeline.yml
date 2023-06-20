@@ -103,7 +103,7 @@ jobs:
           
   buildImageandDeploy:
       name: building docker image
-      #runs-on: ubuntu-latest
+      
       needs: [ Codebuild , sonar , check_quality]
       uses: ".github/workflows/deploystage.yml@feature"
       with:
