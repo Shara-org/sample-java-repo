@@ -16,8 +16,11 @@ jobs:
     steps:
       # Checks out the repository this file is in
       - uses: actions/checkout@v3
+      - name: Install Azure CLI
+        run: |
+         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-      # Logs in with your Azure credentials
+      # Logs in with your Azure credential
       - name: Azure login
         uses: azure/login@v1.4.6
         with:
@@ -67,6 +70,6 @@ jobs:
         uses: Azure/k8s-deploy@v4
         with:
           action: deploy
-          manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
+          manifests: ./Dockerfile
           images: |
             ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
