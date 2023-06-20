@@ -21,8 +21,8 @@ on:
          type: string
 
 jobs:
-   Codebuild:
-    name: Codebuild
+   CodeCheckout_Codebuild:
+    name: Code checkout & Codebuild
     runs-on : ${{inputs.runnerName}}
     env:
      MY_TOKEN: ${{ secrets.GITTOKEN }}
