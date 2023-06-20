@@ -105,10 +105,10 @@ jobs:
       name: building docker image
       #runs-on: ubuntu-latest
       needs: [ Codebuild , sonar , check_quality]
-      uses: "Shara-org/sample-java-repo/.github/workflows/deploystage.yml@feature"
+      uses: ".github/workflows/deploystage.yml@${{branchName}}"
       with:
         runnerName: "ubuntu-latest"
-      
+        branchName: "feature"
       
       
       
