@@ -1,10 +1,17 @@
 on:
   workflow_call:
+  
+   inputs:
+      
+      runnerName:
+        required: true
+        default: "ubuntu-latest"
+        type: string
 
 jobs:
   buildDockerImage:
     name: Building Docker image
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runnerName }}
 
     steps:
       # Checks out the repository this file is in
@@ -25,7 +32,7 @@ jobs:
 
   deploy:
    
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runnerName }}
     needs: [buildDockerImage]
     
     steps:
