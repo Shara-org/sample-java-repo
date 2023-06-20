@@ -20,7 +20,7 @@ jobs:
         run: |
          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-      # Logs in with your Azure credentials
+      # Logs in with your Azure credential
       - name: Azure login
         uses: azure/login@v1.4.6
         with:
