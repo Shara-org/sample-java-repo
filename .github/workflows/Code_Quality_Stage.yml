@@ -15,7 +15,7 @@ on:
  
 jobs:
  sonar:
-      name: Test - SonarCloud Scan
+      name:  SonarCloud Scanning
       runs-on: ${{inputs.runnerName}}
       steps:
         - uses: actions/checkout@v1
@@ -31,6 +31,7 @@ jobs:
  check_quality:
      name: Check Sonar Report Quality
      runs-on: ${{inputs.runnerName}}
+     needs: [sonar]
      env:
       CODE_SMELLS_THRESHOLD: "16"
       VULNERABILITIES_THRESHOLD: "0"
