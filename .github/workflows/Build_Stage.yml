@@ -37,3 +37,12 @@ jobs:
          cache: ${{inputs.cache}}
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+   upload_artifacts:     
+         name: Upload artifact for deployment job
+         runs-on : ${{inputs.runnerName}}
+         steps:
+         - name: uploading
+         - uses: actions/upload-artifact@v3
+           with:
+            
+            path: ./
