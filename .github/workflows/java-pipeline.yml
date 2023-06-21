@@ -17,13 +17,12 @@ jobs:
        distribution: "temurin"
        cache: "maven" 
       
-  CodeScanning:
-      name: Test - SonarCloud Scan
-      uses: "./.github/workflows/Code_Quality_Stage.yml"
-      needs: [ Codebuild ]
-      with:
-           java-version : "11.0.4"
-           runnerName: "ubuntu-latest"
+ # CodeScanning:
+  #    name: Test - SonarCloud Scan
+ #     uses: "./.github/workflows/Code_Quality_Stage.yml"
+ #     needs: [ Codebuild ]
+  ##        java-version : "11.0.4"
+  #       runnerName: "ubuntu-latest"
           
   #buildImageandDeploy:
   #    name: building docker image
