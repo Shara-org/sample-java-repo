@@ -35,7 +35,9 @@ jobs:
         run: mvn -B package --file pom.xml
 
   upload_artifacts:
+  
     name: Upload artifact for deployment job
+    needs: [ CodeCheckout_Codebuild ]
     runs-on: ${{inputs.runnerName}}
     steps:
       - name: Uploading
