@@ -43,4 +43,4 @@ jobs:
       - name: Uploading
         uses: actions/upload-artifact@v3
         with:
-          path: ./home/runner/work/sample-java-repo/sample-java-repo/target/java11-examples-1.0-SNAPSHOT.jar
+          path: /home/runner/work/sample-java-repo/sample-java-repo/target/java11-examples-1.0-SNAPSHOT.jar
