@@ -32,10 +32,19 @@ jobs:
         - name: Login to Docker Hub
           run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
         - name: Build Docker image
-          run: docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
+          run: docker build -t ${{ env.REPO }}:latest -t ${{ env.REPO }}:${{ github.sha }} .
+
         - name: Publish Docker image
           run: docker push $REPO
-       
+        - name: Install Trivy
+          run: |
+           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+
+        - name: Run Trivy scan
+          run: trivy image --clear-cache --format json -o scan_report.json ${{ env.REPO }}:${{ github.sha }}
+
+        - name: Display Trivy scan results
+          run: cat scan_report.json
   BuildImageandTrivyScanner:
       name: Trivyscanner
       uses: "./.github/workflows/trivy.yml"
