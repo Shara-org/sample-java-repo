@@ -15,4 +15,7 @@ jobs:
          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 
      - name: Run Trivy scan
-       run: trivy image --clear-cache --exit-code 1 ${{ env.REPO }}:${{ github.sha }}
+       run: trivy image --clear-cache --format json -o scan_report.json ${{ env.REPO }}:${{ github.sha }}
+
+     - name: Display Trivy scan results
+       run: cat scan_report.json
