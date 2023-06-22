@@ -12,7 +12,7 @@ jobs:
     name: Codebuild
     uses: "./.github/workflows/Build_Stage.yml"
     with:
-       runnerName: "ubuntu-latest"
+       runnerName: "shara-org-runner"
        java-version: "11"
        distribution: "temurin"
        cache: "maven" 
