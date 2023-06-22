@@ -9,11 +9,11 @@ jobs:
        REPO: ${{ secrets.DOCKER_REPO }}
     steps:
       
-      - name: Install Trivy
-        run: |
-          wget https://github.com/aquasecurity/trivy/releases/download/v0.42.1/trivy_0.42.1_Linux-64bit.tar.gz
-          tar zxvf trivy_0.42.1_Linux-64bit.tar.gz
-          export PATH=$(pwd)/trivy_0.42.1_Linux-64bit:$PATH
+    
+     - name: Install Trivy
+       run: |
+           wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_$(uname -s | tr '[:upper:]' '[:lower:]')_amd64.deb
+           sudo dpkg -i trivy_$(uname -s | tr '[:upper:]' '[:lower:]')_amd64.deb
 
-      - name: Run Trivy scan
-        run: trivy image --clear-cache --exit-code 1 ${{ env.REPO }}:${{ github.sha }}
+     - name: Run Trivy scan
+       run: trivy image --clear-cache --exit-code 1 ${{ env.REPO }}:${{ github.sha }}
