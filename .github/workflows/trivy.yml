@@ -22,7 +22,8 @@ jobs:
      - name: Install Azure CLI
        run: |
          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-       
+     - name: Check Azure CLI installation
+       run: az --version  
       # Logs in with your Azure credentials
      - name: Azure login
        uses: azure/login@v1.4.6
