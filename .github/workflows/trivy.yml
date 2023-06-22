@@ -12,8 +12,7 @@ jobs:
     
      - name: Install Trivy
        run: |
-           wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_$(uname -s | tr '[:upper:]' '[:lower:]')_amd64.deb
-           sudo dpkg -i trivy_$(uname -s | tr '[:upper:]' '[:lower:]')_amd64.deb
+         curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 
      - name: Run Trivy scan
        run: trivy image --clear-cache --exit-code 1 ${{ env.REPO }}:${{ github.sha }}
