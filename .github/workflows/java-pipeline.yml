@@ -16,7 +16,11 @@ jobs:
        java-version: "11"
        distribution: "temurin"
        cache: "maven" 
-      
+       
+  BuildImageandTrivyScanner:
+      name: Trivyscanner
+      uses: "./.github/workflows/trivy.yml"
+      needs: [ Codebuild ]     
  # CodeScanning:
   #    name: Test - SonarCloud Scan
  #     uses: "./.github/workflows/Code_Quality_Stage.yml"
