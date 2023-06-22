@@ -58,7 +58,7 @@
                     <argLine>--add-modules=jdk.incubator.httpclient</argLine>
                 </configuration>
             </plugin>
-            <plugins>
+            
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-deploy-plugin</artifactId>
@@ -68,7 +68,7 @@
                 <url>https://maven.pkg.github.com/Shara1998/sample-java-repo</url>
             </configuration>
         </plugin>
-    </plugins>
+    
         </plugins>
     </build>
   <profiles>
