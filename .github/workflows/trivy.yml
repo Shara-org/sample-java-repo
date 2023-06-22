@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
        REPO: ${{ secrets.DOCKER_REPO }}
-#fdf
     steps:
       
         - name: Run Trivy vulnerability scanner
