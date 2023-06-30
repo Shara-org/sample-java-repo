@@ -30,7 +30,7 @@ jobs:
            token: ${{ secrets.VAULT_TOKEN }}
           # caCertificate: ${{ secrets.VAULT_CA_CERT }}
            secrets: |
-            pshara6644-org/pshara6644-project/Vault Secrets/Applications/sample-test accessKey | SONAR_TOKEN ;
+            pshara6644-org/pshara6644-project/Vault Secrets/Applications/sample-test SONAR_TOKEN ;
         - name: SonarCloud Scan
          # run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
           run: mvn -B clean verify -Psonar -Dsonar.login=${{ env.SONAR_TOKEN }}
