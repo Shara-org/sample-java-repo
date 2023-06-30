@@ -25,22 +25,22 @@ jobs:
        java-version : "11.0.4"
        runnerName: "ubuntu-latest"
           
-  buildImageandDeploy:
-    name: building docker image
-    #needs: [ Codebuild , CodeScanning]
-    needs: [ Codebuild ]
-    uses: "./.github/workflows/deploystage.yml"
-    with:
-      runnerName: "ubuntu-latest"
-  TrivyScanner:
-      name: Trivyscanner
-      uses: "./.github/workflows/trivy.yml"
-      needs: [ Codebuild,buildImageandDeploy ] 
-      with:
-       runnerName: "ubuntu-latest"
-  Terraform:
-      name: Terraform 
-      uses: "./.github/workflows/terraform.yml"
-      #needs: [ Codebuild,buildImageandDeploy ]
+#   buildImageandDeploy:
+#     name: building docker image
+#     #needs: [ Codebuild , CodeScanning]
+#     needs: [ Codebuild ]
+#     uses: "./.github/workflows/deploystage.yml"
+#     with:
+#       runnerName: "ubuntu-latest"
+#   TrivyScanner:
+#       name: Trivyscanner
+#       uses: "./.github/workflows/trivy.yml"
+#       needs: [ Codebuild,buildImageandDeploy ] 
+#       with:
+#        runnerName: "ubuntu-latest"
+#   Terraform:
+#       name: Terraform 
+#       uses: "./.github/workflows/terraform.yml"
+#       #needs: [ Codebuild,buildImageandDeploy ]
       
       
