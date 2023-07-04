@@ -28,7 +28,7 @@ jobs:
           with:
            url: "https://vault-cluster-public-vault-01328c14.45ec0be2.z1.hashicorp.cloud:8200"
            token: ${{ secrets.VAULT_TOKEN }}
-          # caCertificate: ${{ secrets.VAULT_CA_CERT }}
+           caCertificate: ${{ secrets.VAULT_CA_CERT }}
            secrets: |
             pshara6644-org/pshara6644-project/Vault Secrets/Applications/sample-test SONAR_TOKEN ;
         - name: SonarCloud Scan
