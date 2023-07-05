@@ -29,10 +29,11 @@ jobs:
           sudo apt install vault -y
 
       - name: Authenticate with HashiCorp Vault
+        run: vault login -no-print "$VAULT_TOKEN"
         env:
-          VAULT_ADDR: https://vault-cluster-public-vault-01328c14.45ec0be2.z1.hashicorp.cloud:8200
-          VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
-        run: vault login -no-print $VAULT_TOKEN
+         VAULT_ADDR: https://vault-cluster-public-vault-01328c14.45ec0be2.z1.hashicorp.cloud:8200
+         VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
+
 
       - name: Set up Vault Secrets
         uses: hashicorp/vault-action@v2
