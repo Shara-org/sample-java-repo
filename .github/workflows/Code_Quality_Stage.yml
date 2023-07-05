@@ -9,7 +9,6 @@ on:
         required: true
         default: "11.0.4"
         type: string
-
 jobs:
   sonar:
     name: SonarCloud Scanning
