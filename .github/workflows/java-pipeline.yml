@@ -14,8 +14,8 @@ jobs:
     with:
        runnerName: "ubuntu-latest"
        java-version: "11"
-       distribution: "temurin"
-       cache: "maven" 
+ #      distribution: "temurin"
+ #      cache: "maven" 
     
   CodeScanning:
       name: Test - SonarCloud Scan
