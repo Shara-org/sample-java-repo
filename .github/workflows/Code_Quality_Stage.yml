@@ -23,6 +23,35 @@ jobs:
           uses: actions/setup-java@v1
           with:
            java-version: ${{inputs.java-version}}
+      
+        - name: Set up Git repository
+          uses: actions/checkout@v2
+
+        - name: Update apt repository
+          run: sudo apt update
+
+        - name: Download HashiCorp GPG key
+          run: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+        - name: Add HashiCorp repo
+          run: echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+ 
+        - name: Install vlt CLI
+          run: |
+             sudo apt update
+              sudo apt install vlt -y
+
+        - name: Verify vlt installation
+          run: vlt
+
+        - name: Configure HCP Vault Secrets CLI - Interactive Login
+          run: vlt login
+
+        - name: Configure HCP Vault Secrets CLI - Init Config
+          run: vlt config init
+
+        - name: Run vlt secrets
+          run: vlt secrets
         - name: Set up Vault Secrets
           uses: hashicorp/vault-action@v2
           with:
