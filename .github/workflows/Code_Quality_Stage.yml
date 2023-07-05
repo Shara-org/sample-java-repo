@@ -34,13 +34,12 @@ jobs:
             echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
            sudo apt update
            sudo apt install vault -y
-
         - name: Authenticate with HashiCorp Vault
           env:
-            VAULT_ADDR: https://vault-cluster-public-vault-01328c14.45ec0be2.z1.hashicorp.cloud:8200
-            VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
-          run: |
-            vault login $VAULT_TOKEN
+             VAULT_ADDR: https://vault-cluster-public-vault-01328c14.45ec0be2.z1.hashicorp.cloud:8200
+             VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
+             run: vault login -no-print $VAULT_TOKEN
+
 
 
         - name: Set up Vault Secrets
