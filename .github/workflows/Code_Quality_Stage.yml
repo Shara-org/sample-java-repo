@@ -38,7 +38,7 @@ jobs:
         uses: hashicorp/vault-action@v2
         with:
           url: "https://vault-cluster-public-vault-01328c14.45ec0be2.z1.hashicorp.cloud:8200"
-          token: ${{ secrets.VAULT_TOKEN }}
+          token: hvs.CAESINbPgPqfjwqnA3OlslipXxmGQ-Y1zb0IEnLRcqZzbaZGGigKImh2cy5lME9zMXRaVlRHdVBMWUR4M1k5STJjRE4uaUxybUwQmLED
           path: pshara6644-org/pshara6644-project/Vault Secrets/Applications/sample-test/Secrets
           key: SONAR_TOKEN
 
