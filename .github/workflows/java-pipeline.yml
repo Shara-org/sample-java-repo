@@ -24,6 +24,11 @@ jobs:
       with:
        java-version : "11.0.4"
        runnerName: "ubuntu-latest"
+       
+  CodeQLScanning:
+      name: CodeQL Scanning
+      uses: "./.github/workflows/codeql.yml"
+      needs: [ Codebuild ]
           
 #   buildImageandDeploy:
 #     name: building docker image
